@@ -189,7 +189,7 @@ const prizes = [
     {
         name: "Apple MacBook M2",
         image:
-        "https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Air-M2-Midnight-hero-220606.jpg"
+        "MACKBOOK M2.jpeg"
     },
 
     {
@@ -201,7 +201,7 @@ const prizes = [
     {
         name: "Vivo T4",
         image:
-        "https://blog.sathya.store/img/product/zHZFXcBISPxFhfJC.png"
+        "VIVO T4.jpeg"
     },
 
     {
@@ -213,7 +213,7 @@ const prizes = [
     {
         name: "Dell 15 Laptop",
         image:
-        "https://www.ankhang.vn/media/product/250x250/2024/09/12/dell-15-dc15250-dc5i7748w1-1.jpg"
+        "DELL 15 LAPTOP.jpeg"
     },
 
     {
@@ -225,7 +225,7 @@ const prizes = [
     {
         name: "Premium Car",
         image:
-        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+        "BMW CAR.jpeg"
     }
 
 ];
