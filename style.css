@@ -1,0 +1,456 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: white;
+    background:
+        radial-gradient(circle at 20% 20%, #172554, transparent 35%),
+        radial-gradient(circle at 80% 80%, #581c87, transparent 35%),
+        linear-gradient(135deg, #020617, #0f172a 50%, #020617);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+header {
+    text-align: center;
+    padding: 35px 20px 20px;
+}
+
+header h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+}
+
+header p {
+    margin-top: 10px;
+    color: #cbd5e1;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 25px auto;
+}
+
+.tab-btn {
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.08);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s;
+    backdrop-filter: blur(15px);
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(99,102,241,.35);
+}
+
+.game {
+    width: min(1100px, 94%);
+    margin: auto;
+    display: none;
+}
+
+.game.active {
+    display: block;
+}
+
+/* GLASS CARD */
+
+.glass {
+    background: rgba(15,23,42,.65);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+}
+
+/* =========================
+   STONE PAPER SCISSORS
+========================= */
+
+.sps-card {
+    padding: 35px;
+    text-align: center;
+}
+
+.sps-card h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin: 25px 0;
+}
+
+.score-box {
+    min-width: 120px;
+    padding: 15px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.06);
+}
+
+.score-number {
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.hands-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.player-hand,
+.computer-hand {
+    width: 170px;
+    height: 170px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    transition: .4s;
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.hand-label {
+    margin-top: 8px;
+    color: #94a3b8;
+}
+
+.hand-changing {
+    animation: handMove .45s ease;
+}
+
+@keyframes handMove {
+    0% {
+        transform: scale(.6) rotate(-15deg);
+    }
+
+    60% {
+        transform: scale(1.2) rotate(10deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+.choice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.choice {
+    width: 130px;
+    height: 120px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.07);
+    color: white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.choice:hover {
+    transform: translateY(-8px) scale(1.04);
+    background: rgba(59,130,246,.25);
+    box-shadow: 0 15px 35px rgba(59,130,246,.25);
+}
+
+.choice .emoji {
+    font-size: 55px;
+    display: block;
+}
+
+.result {
+    min-height: 45px;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* =========================
+   PRIZE WHEEL
+========================= */
+
+.wheel-card {
+    padding: 35px;
+    text-align: center;
+}
+
+.wheel-card h2 {
+    font-size: 30px;
+}
+
+.wheel-wrapper {
+    width: min(600px, 90vw);
+    height: min(600px, 90vw);
+    margin: 35px auto;
+    position: relative;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 12px solid rgba(255,255,255,.9);
+    box-shadow:
+        0 0 0 8px rgba(96,165,250,.15),
+        0 0 80px rgba(59,130,246,.35);
+    transition: transform 5s cubic-bezier(.15,.75,.15,1);
+    background: conic-gradient(
+        #2563eb 0deg 45deg,
+        #7c3aed 45deg 90deg,
+        #db2777 90deg 135deg,
+        #ea580c 135deg 180deg,
+        #16a34a 180deg 225deg,
+        #0891b2 225deg 270deg,
+        #9333ea 270deg 315deg,
+        #e11d48 315deg 360deg
+    );
+}
+
+.wheel-center {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #020617;
+    border: 8px solid white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.wheel-item {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    z-index: 5;
+    transform:
+        translate(-50%, -50%)
+        rotate(var(--angle));
+}
+
+.wheel-item img {
+    width: 70px;
+    height: 55px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+/*
+   Pointer
+*/
+
+.pointer {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 55px solid #facc15;
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,.5));
+}
+
+.spin-btn {
+    border: none;
+    padding: 17px 45px;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    box-shadow: 0 15px 40px rgba(99,102,241,.35);
+    transition: .25s;
+}
+
+.spin-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+}
+
+.spin-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    backdrop-filter: blur(12px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(450px, 90%);
+    padding: 35px;
+    text-align: center;
+    border-radius: 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(15,23,42,.98),
+        rgba(30,41,59,.98)
+    );
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 30px 100px rgba(0,0,0,.7);
+    animation: popup .35s ease;
+}
+
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-box h2 {
+    color: #facc15;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.modal-box img {
+    width: 220px;
+    height: 180px;
+    object-fit: contain;
+    background: white;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 15px auto;
+}
+
+.modal-box h3 {
+    font-size: 22px;
+    margin: 10px 0 20px;
+}
+
+.close-btn {
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    background: #2563eb;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .sps-card,
+    .wheel-card {
+        padding: 20px;
+    }
+
+    .hands-area {
+        gap: 15px;
+    }
+
+    .player-hand,
+    .computer-hand {
+        width: 130px;
+        height: 130px;
+        font-size: 75px;
+    }
+
+    .choice {
+        width: 100px;
+        height: 100px;
+    }
+
+    .choice .emoji {
+        font-size: 43px;
+    }
+
+    .wheel-item {
+        width: 90px;
+        height: 90px;
+        font-size: 8px;
+    }
+
+    .wheel-item img {
+        width: 50px;
+        height: 38px;
+    }
+}

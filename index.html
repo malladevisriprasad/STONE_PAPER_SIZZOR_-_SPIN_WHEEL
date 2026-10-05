@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMES</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <h1>🎮 Ultimate Games Hub</h1>
+    <p>Stone • Paper • Scissors &nbsp; | &nbsp; Prize Wheel Demo</p>
+</header>
+
+<div class="tabs">
+
+    <button class="tab-btn active" onclick="openGame('sps', this)">
+        ✊ Stone Paper Scissors
+    </button>
+
+    <button class="tab-btn" onclick="openGame('wheelGame', this)">
+        🎡 Prize Wheel
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     STONE PAPER SCISSORS
+=================================== -->
+
+<section id="sps" class="game active">
+
+<div class="glass sps-card">
+
+    <h2>✊ Stone Paper Scissors ✋</h2>
+
+    <p style="color:#94a3b8;">
+        Choose your hand
+    </p>
+
+    <div class="score">
+
+        <div class="score-box">
+            <div>You</div>
+            <div id="playerScore" class="score-number">0</div>
+        </div>
+
+        <div class="score-box">
+            <div>Computer</div>
+            <div id="computerScore" class="score-number">0</div>
+        </div>
+
+    </div>
+
+
+    <div class="hands-area">
+
+        <div>
+            <div id="playerHand" class="player-hand">
+                ✊
+            </div>
+
+            <div class="hand-label">
+                Your Hand
+            </div>
+        </div>
+
+
+        <div style="font-size:30px;">
+            VS
+        </div>
+
+
+        <div>
+            <div id="computerHand" class="computer-hand">
+                🤖
+            </div>
+
+            <div class="hand-label">
+                Computer
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="choice-buttons">
+
+        <button class="choice" onclick="playSPS('stone')">
+            <span class="emoji">✊</span>
+            Stone
+        </button>
+
+        <button class="choice" onclick="playSPS('paper')">
+            <span class="emoji">🖐️</span>
+            Paper
+        </button>
+
+        <button class="choice" onclick="playSPS('scissors')">
+            <span class="emoji">✌️</span>
+            Scissors
+        </button>
+
+    </div>
+
+
+    <div id="spsResult" class="result">
+        Choose Stone, Paper or Scissors
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================
+     PRIZE WHEEL
+=================================== -->
+
+<section id="wheelGame" class="game">
+
+<div class="glass wheel-card">
+
+    <h2>🎡 Tech Prize Picker</h2>
+
+    <p style="color:#94a3b8;margin-top:8px;">
+        A non-monetary random picker demo
+    </p>
+
+
+    <div class="wheel-wrapper">
+
+        <div class="pointer"></div>
+
+        <div id="wheel" class="wheel">
+
+            <div class="wheel-item"
+                 style="left:50%;top:8%;--angle:0deg;">
+                <img src="https://img.shoplineapp.com/media/image_clips/6aaba6e92e896aad4074d9b5/original.jpg?1789634279=">
+                iPhone 18 Pro Max
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:78%;top:22%;--angle:45deg;">
+                <img src="https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Air-M2-Midnight-hero-220606.jpg">
+                MacBook M2
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:92%;top:50%;--angle:90deg;">
+                <img src="https://welectronics.com/images/stories/virtuemart/product/OppoReno16ProChinaBlack76.jpg">
+                OPPO Reno 16 Pro
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:78%;top:78%;--angle:135deg;">
+                <img src="https://www.vivo.com/in/products/param/t4-5g">
+                Vivo T4
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:50%;top:92%;--angle:180deg;">
+                <img src="https://in.store.asus.com/media/catalog/product/x/1/x1502va_qt_blu_mso_rfrsh_bcklt_kbd_6__1.png">
+                ASUS Vivobook 15
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:22%;top:78%;--angle:225deg;">
+                <img src="https://www.ankhang.vn/media/product/250x250/2024/09/12/dell-15-dc15250-dc5i7748w1-1.jpg">
+                Dell 15 Laptop
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:8%;top:50%;--angle:270deg;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6538/6538094cv12d.jpg">
+                HP OmniDesk
+            </div>
+
+
+            <div class="wheel-item"
+                 style="left:22%;top:22%;--angle:315deg;">
+                🚗
+                <br>
+                Premium Car
+            </div>
+
+
+            <div class="wheel-center">
+                🎯
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button id="spinBtn" class="spin-btn" onclick="spinWheel()">
+        🎡 SPIN
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ==================================
+     RESULT MODAL
+=================================== -->
+
+<div id="resultModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>🎉 Selected!</h2>
+
+        <p>
+            The wheel selected:
+        </p>
+
+        <img id="winnerImage" src="" alt="Selected item">
+
+        <h3 id="winnerName"></h3>
+
+        <button class="close-btn" onclick="closeModal()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
